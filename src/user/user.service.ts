@@ -51,9 +51,7 @@ export class UserService {
     const temp = await this.postgres.query(
       `update public."User" set name = '${data.name}' where id = ${data.id} RETURNING id, name`,
     );
-    console.log('////////// temp ', temp);
     const [user] = temp.rows;
-    console.log('////////// user ', user);
     if (user) {
       const { id: userId, name } = user;
       return { id: userId, name };
